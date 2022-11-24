@@ -23,9 +23,19 @@
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
-    <!-- https://www.npmjs.com/package/localstorage-slim - a library to make localstorage simple -->
+    <!-- https://github.com/digidem/leaflet-bing-layer - allows use of bing maps -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise"></script>
     <script src="https://unpkg.com/leaflet-bing-layer@3.3.1/leaflet-bing-layer.js"></script>
+
+    <!-- https://github.com/rhlt/leaflet-geolet - a control to follow location signals -- >
+    <script src="js/geolet.js"></script><! -- include geolet.js after leaflet.js -->
+
+    
+    <!-- https://github.com/domoritz/leaflet-locatecontrol - another different control to follow location signals -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@[VERSION]/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
+
 
     <!-- set the window dimensions -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +50,10 @@
 
         var map = L.map('map').setView([-35.281869, 149.080321], 18)
 
-        var bingLayer = L.tileLayer.bing(BING_KEY).addTo(map)
+        var bingLayer = L.tileLayer.bing(BING_KEY).addTo(map);
+
+        L.control.locate().addTo(map);
+
     </script>
     <!--
     <script>
@@ -51,7 +64,9 @@
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
-
+        L.geolet({
+				position: 'bottomleft'
+			}).addTo(map);
     </script>
     -->
     <div class="pure-g">
